@@ -1,0 +1,421 @@
+\documentclass[a4paper,twocolumn]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{scrextend}
+\usepackage{titlesec}
+\usepackage{multirow}
+\usepackage[T1]{fontenc}
+\changefontsizes[8pt]{8pt}
+\usepackage[left=0.4cm,right=0.4cm,top=0.4cm,bottom=0.4cm]{geometry}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{3pt}
+
+\titlespacing*{\section}
+{0pt}{.0ex plus .0ex minus .0ex}{.0ex plus .0ex minus .0ex}
+\titlespacing*{\subsection}
+{0pt}{.5ex plus .0ex minus .0ex}{.5ex plus .0ex minus .0ex}
+\titlespacing*{\subsubsection}
+{0pt}{.5ex plus .0ex minus .0ex}{.5ex plus .0ex minus .0ex}
+
+
+\newcommand{\E}[1] {\mathbb{E} [#1] }
+\newcommand{\SD} {\mathrm{SD}}
+\newcommand{\PV} {\mathrm{PV}}
+\newcommand{\NPV} {\mathrm{NPV}}
+\newcommand{\APR} {\mathrm{APR}}
+\newcommand{\EAR} {\mathrm{EAR}}
+\newcommand{\YTM} {\mathrm{YTM}}
+\newcommand{\FV} {\mathrm{FV}}
+
+\begin{document}
+
+\section*{Discounting and valuation}
+
+\textbf{Earnings per share :} $EPS = \frac{\mathrm{Net\ income}}{\mathrm{Shares\ outstanding}} $
+
+\textbf{Law of one price :} two assets that promises the same cash flows (or equivalent cash flows) must have the same price at any point in time (no arbitrage).
+
+\textbf{The time value of money :} \$1 today is worth more than \$1 tomorrow : $PV_{forward} = CF \cdot (1+r)^n$; $PV_{backward} = \frac{CF}{(1+r)^n}$
+
+\textbf{Value additivity :} $\PV = \sum_{n=0}^N \PV(C_n) = \sum_{n=0}^N \frac{C_n}{(1+r)^n}$
+
+\textbf{Net present value :} $\NPV = \PV(\mathrm{Benefits}) - \PV(\mathrm{Costs})$
+
+\subsection*{Shortcuts}
+
+\underline{The following 4 formulas are from $t=1$, not $t=0$ !}
+
+\textbf{Perpetuity :} PV(C in perpetuity) = $\frac{C}{r}$
+
+\textbf{Annuity :} PV(annuity of C for N periods) = $C \cdot \frac{1}{r} \left( 1 - \frac{1}{(1+r)^N} \right)$
+
+\textbf{Growing perpetuity :} PV(growing perpetuity) = $\frac{C}{r - g}$
+
+\textbf{Growing annuity :} PV(growing annuity) = $C \cdot \frac{1}{r - g} \left( 1 - \left( \frac{1+g}{1+r}\right)^N \right)$
+
+\subsection*{Interest rates}
+
+\textbf{Effective annual rate :} indicates the total amount of interest that will be earned at the end of one year. \underline{Example :} with an EAR of 5\%, a \$100,000 investment grows to \$105,000.
+
+\textbf{Annual percentage rate :} indicates the amount of simple interest earned in one year (ingnoring compounding)
+$APR < EAR$\\
+Interest rate per compounding period = $\frac{APR}{\mathrm{k\ periods / year}}$\\
+\underline{Example :} 6\% APR with monthly compounding, implies that one earns 0.5\% every month.
+
+\textbf{APR vs EAR :} $1 + \EAR = \left( 1 + \frac{\APR}{k_{APR}} \right)^{k_{EAM}}$
+
+\textbf{Continuous compounding ($k \to \infty$) :} $1 + \EAR = e^\APR$ or $\APR = \ln (1 + \EAR)$\\
+\underline{Example :} APR of $c=6\%$, we get $\EAR = r = e^{0.06} - 1 = 6.1837\%$
+
+\textbf{Nominal \& Real interest Rate:} $r_r = \frac{r_n - i}{1+i} \approx r_n -i$
+
+\textbf{Yield curve :} plot of the relation between horizon (or term) of an investment and its interest rate (The interest rates that banks offer on investments depends on the horizon)
+
+\textbf{Value additivity with different rates :} $\PV = \sum_{n=1}^N \frac{C_n}{(1+r_n)^n}$
+
+\textbf{Spot rate :} rate for a transaction between today and some future date.\\
+\textbf{Forward rate :} rate for a transaction between two future dates.\\
+If $0 < t < T : (1 + r_{0 \to T})^T = (1 + r_{0 \to t})^t (1 + r_{t \to T})^{T-t}$ ($r_{a \to b}$ is the rate from date $a$ to date $b$).
+
+\subsection*{Valuing bonds}
+
+\textbf{Terminology :}\\
+\textit{Maturity date :} date of last promised payment\\
+\textit{Face/par/principal value (FV) :} promised payment at maturity\\
+\textit{Coupon (CPN) :} promised payments prior to maturity\\
+\textit{Coupon rate :} determines the coupons payment, expressed as an APR\\
+\textit{Yield to maturity (YTM)} : rate of return that investors will earn if they buy the bond at its current price and hold it to maturity. YTM is an effective rate per period (same period as coupon payments).
+
+\textbf{Coupons :} $CPN = \frac{\mathrm{Coupon\ rate} \times \mathrm{Face\ value}}{\mathrm{Number\ of\ coupons\ payment\ per\ year}}$\\
+\underline{Example :}  a \$1,000 bond with a 10\% coupon rate and semi-annual payments will pay \$50 every six months
+
+\subsubsection*{Zero-coupon bonds}
+
+\textbf{Pricing :} $P = \frac{\FV}{(1 + \YTM_n)^n}$ ($n$ is the number of periods)\\
+\textbf{Yield to maturity :} $\YTM_n = \left( \frac{\FV}{P} \right)^{{}^1/_n} - 1$
+
+Zero-coupon bonds always trade at a discount (price lower than the face value).
+
+\subsubsection*{Coupon bonds}
+
+\textbf{Pricing :} $P = CPN \cdot \frac{1}{\YTM_n} \left( 1 - \frac{1}{(1+\YTM_n)^n} \right) + \frac{\FV}{(1 + \YTM_n)^n}$
+
+\textbf{Yield to maturity :} Need to solve pricing equation $\to$ use a numerical solver 
+
+Coupon bonds may trade at a discount (price lower than the face value), at par (price equal to the face value) or at a premium (price greater than the face value).
+
+\subsection*{Valuing stocks}
+
+\textbf{Pricing (one year) :} $P_0 = \frac{Div_1 + P_1}{1 + r_E}$
+
+\textbf{Equity cost of capital (one year) :} $r_E = \frac{Div_1}{P_0} + \frac{P_1 - P_0}{P_0}$ = dividend yield + capital gain rate
+
+\textbf{Pricing (multi-year) :} $P_0 = \frac{Div_1}{1 + r_E} + \frac{Div_2}{(1 + r_E)^2} + ... + \frac{Div_N}{(1 + r_E)^N} + \frac{P_N}{(1 + r_E)^N}$
+
+$N \to \infty : $ $P_0 = \sum_{n=1}^\infty \frac{Div_n}{(1 + r_E)^n}$ 
+
+That is the price of the stock is equal to the present value of the expected future dividends it will pay
+
+\textbf{Growing dividends :} $P_0 = \frac{Div_1}{r_E - g}$
+
+\textbf{Share repurchase :} $P_0 = \frac{\PV(\mathrm{Future\ total\ dividends\ and\ repurchase})}{\mathrm{Shares\ outstanding}_0}$
+
+%\newpage
+
+\section*{Risk and Return}
+
+\subsection*{Facts about returns}
+
+Rate of return = Risk-free rate + Risk premium
+
+$R_{t+1} = \frac{Div_{t+1}}{P_t} + \frac{P_{t+1} - P_t}{P_t} =$ Dividend yield + Capital gain rate
+
+\textbf{Expected return :} $\E{R} = \sum_R p_R \cdot R$
+
+\textbf{Average return :} $\bar{R} = \frac{1}{T} \sum_{t=1}^T R_t$
+
+Var(R) = $\E{(R - \E{R})^2} = \sum_R p_R \cdot (R - \E{R})^2 = \frac{1}{T-1} \sum_{t=1}^T (R_t - \bar{R})^2$
+
+\textbf{Volatility :} $ \mathrm{SD(R)} = \sigma = \sqrt{Var(R)}$
+
+\subsection*{Portfolio returns}
+
+\textbf{Portfolio weights :} $x_i = \frac{\mathrm{Value\ of\ investment}\ i}{\mathrm{Total\ portfolio\ value}}$
+
+\textbf{Portfolio return :} $R_p = \sum_i x_i R_i$, \textbf{Portfolio expected return :} $\E{R_p} = \sum_i x_i \E{R_i}$
+
+\subsection*{Diversification}
+
+\textbf{Risk-free asset :} $Var(R_f) = 0$, $\forall i : Cov(r_f, r_i) = Corr(r_f, r_i) = 0 $
+
+$Cov(R_i, R_j) = \frac{1}{T-1} \sum_{t=1}^T (R_{i,t} - \bar{R_i})(R_{j,t} - \bar{R_j})$
+
+$Corr(R_i, R_j) = \frac{Cov(R_i, R_j)}{\SD(R_i) \SD(R_j)}$
+
+\textbf{Firm-specific risk :} idiosyncratic, can be reduced by diversification\\
+\textbf{Market-wide risk :} systematic, cannot be eliminated
+
+$Var(R_p) = Cov(R_p, R_p) = Cov(\sum_i x_i R_i, R_p) = \sum_i x_i Cov(R_i, R_p) = \sum_i \sum_j x_i x_j Cov(R_i, R_j)$
+
+$Var(R_p) = \sum_i x_i \SD(R_i) \SD(R_p) Corr(R_i, R_p)$
+
+$\SD(R_p) = \sum_i x_i \SD(R_i) Corr(R_i, R_p)$
+
+\subsubsection*{Portfolio with two assets}
+
+$\E{R_p} = x_1 \E{R_1} + x_2 \E{R_2}$
+
+$Var(R_p) = x_1^2 \SD(R_1)^2 + x_2^2 \SD(R_2)^2 + 2 x_1 x_2 Corr(R_1, R_2) \SD(R_1) \SD(R_2)$
+
+\subsubsection*{Portfolio with one risky and one risk-free assets}
+
+$\E{R_{xp}} = (1-x) r_f + x \E{R_p} = r_f + x (\E{R_p} - r_f)$
+
+$\SD(R_p) = x \SD(R_p)$
+
+\textbf{Sharpe ratio :} $\mathrm{Sh} = \frac{\mathrm{Portfolio\ excess\ return}}{\mathrm{Portfolio volatility}} = \frac{\E{R_p} - r_f}{\SD(R_p)}$ 
+
+\textbf{Tangent portfolio :} portfolio with highest sharpe ratio
+
+Adding an inverstment in a portfolio improves the sharpe ratio if :\\
+$\E{R_i} > r_f + \SD(R_i) Corr(R_i, R_p) \frac{\E{R_p} - r_f}{\SD(R_p)}$
+
+$\beta_i^p = \frac{\SD(R_i) Corr(R_i, R_p)}{\SD(R_p)} = \frac{Cov(R_i, R_p)}{Var(R_p)}$
+
+Required return (expected return necessary to compensate for the risk  invertment i contributes to the portfolio) :\\
+$r_i = r_f + \beta_i^p (\E{R_p} - r_f)$
+
+\subsection*{CAPM}
+
+\textbf{Two-fund separation theorem :} every investor will invest in a combination of a risk-free asset and the same tangent portfolio, their preference will only determine how much to invest in the tangent portfolio versus the risk-free asset. Thus, the tangent portfolio is the market portfolio.
+
+\textbf{Capital market line :} line from the risk-free asset through the market portfolio ; represents the highest expected return for any level of volatility.
+
+\textbf{CAPM relation :} $\E{R_i} = r_f + \beta^{Mkt}_i (\E{R_{Mkt}} - r_f)$
+
+$\beta_i^{Mkt} = \frac{\SD(R_i) Corr(R_i, R_{Mkt})}{\SD(R_{Mkt})} = \frac{Cov(R_i, R_{Mkt})}{Var(R_{Mkt})}$
+
+\textbf{Security market line :} shows the required return for each security as a function of its beta with the market.
+
+\textbf{Portfolio beta :} $\beta_p = \sum_i x_i \beta_i$
+
+\textbf{Alpha :} a stock's alpha measures the difference between a stock's expected return and its required return.
+
+\textbf{Estimating beta :} regress stock returns ($R_i$) against the market return $R_i = \alpha_i + \beta_i R_{Mkt} + \epsilon_i$. $\alpha_i$ is Jensen's alpha, $\epsilon_i$ is the error.
+
+\textbf{Jensen's alpha :} if $\alpha_i > R_f (1 - \beta_i)$, then the stock did better than expected during the regression period.
+
+\textbf{Variance decomposition :} $\sigma_i^2 = \beta_i^2 \sigma_{Mkt}^2 + \sigma_{\epsilon}^2$ = systematic + idiosyncratic
+
+\textbf{R-squared :} $R^2 = 1 - \frac{\sigma_{\epsilon}^2}{\sigma_i^2} \approx $  proportion of risk that can be attributed to market risk\\
+
+
+\textbf{Call Put Parity :} $c_t - p_t = S_t - K(1+r)^{-(T-t)}$, $c_t$ : european call, $p_t$ : european put, $K(1+r)^{-(T-t)}$ : risk free bond that pays K at time T, $S_t$ : assets concerned by the put\\
+Never optimal to exercise a european call early\\
+It may be optimal to exercise the put option early\\
+
+
+\section*{Capital budgetting}
+
+\textbf{DFC valuation :} Estimation of Free Cash Flows - Estimation of Discount Rate - Estimation of Terminal Value, then compute NPV
+
+Earnings = EBIT, cannot be spent\\
+EBIT = Sales - Costs - R\&D - depreciation\\
+Order of payments : EBIT - interest - taxes - dividends\\
+Equity = $\frac{\mathrm{net\ income}}{r_E}$ \textbf{Leverage $\Leftrightarrow$ debt-to-equity : } $\frac{D}{D+E} = a \Leftrightarrow \frac{D}{E} = \frac{a}{1-a}$
+
+\vspace{-0.7cm}
+
+\begin{center}
+	\begin{tabular}{|l|l|}
+	\hline
+	FCF & = EBIT\\
+	\hline
+	& - EBIT $\times$ Tax rate\\
+	\hline
+	& - $\Delta$WC\\
+	\hline
+	& + Dep and Amortization\\
+	\hline
+	& - CAPEX\\
+	\hline
+	& + Sales capital assets\\
+	\hline
+	& - realized capital gains\\
+	\hline 
+	& + realized capital losses\\
+	\hline
+	\end{tabular}
+\end{center}
+
+\vspace{-0.3cm}
+
+Net WC = Current Assets - Current Liabilities = Cash + Inventory + Receivables - Payables ; 
+$\Delta$WC > 0 : reduces FCF
+
+\textbf{Terminal Value :} Last date at which the project produces CF (or CF becomes constant or grows at constant rate after)
+
+Continuation Value$_i$ = PV(FCF$_{i+1}$) = $\frac{FCF_{i+1}}{r-g}$, FCF grows at constant rate after year i
+
+\textbf{WACC method :} $V_L = \frac{FCF}{r_{WACC}}$,\textbf{Balance sheet identity :} $V_L = E + D$ \\
+$WACC=\frac{debt}{debt+eq.}  (1-\tau)  r_{debt} +\frac{eq.}{debt+eq.}   r_{eq} $
+
+
+\textbf{Expected growth in EBIT g$_{EBIT}$  :}\\
+Reinvestment rate = $\frac{CAPEX + \Delta WC}{EBIT\cdot(1-t)}$\\
+Return on capital = ROC = $\frac{EBIT\cdot(1-t)}{Book Value of Assets}$\\
+g$_{EBIT}$ = Reinvestment rate $\times$ ROC
+
+\textbf{Internal rate of return :}\\
+IRR : Interest rate that set NPV(FCF) = 0\\
+IRR rule : If cost of capital < IRR, take the project, o/w no\\
+IRR rule works only in the case where costs occur before benefits, NPV and IRR rule give opposite recommendations\\
+Picking project with highest IRR can lead to mistakes, does not take into account the scale of the project, measures the return whereas NPV measures the money earned
+
+\textbf{Discounted FCF model (valuation of stocks) :}\\
+$V_0 = PV($Future FCF of Firm$)$\\
+$P_0 = \frac{V_0 + Cash_0 - Debt_0}{\#Shares_0}$\\
+Discount with $r_{WACC}$ rather than $r_E$ as before because $r_E$ is used to discount CF to equity holders, $r_{WACC}$ (Weighted Average Cost of Capital), combines risk of the firm's equity and debt
+
+$V_0 = \frac{FCF_1}{1+r_{WACC}} + ... + \frac{FCF_N}{(1+r_{WACC})^N} + \frac{V_N}{(1+r_{WACC})^N}$\\
+$V_N = \frac{FCF_{N+1}}{r_{WACC}-g_{FCF}} = \frac{1+g_{FCF}}{r_{WACC}-g_{FCF}}\times FCF_N$
+
+\textbf{Leverage Measures :}\\
+$\frac{Debt}{Debt+Equity} = \frac{PV(Debt\ holders\ CF)}{PV(all\ CF)}$\\
+$\frac{EBITDA}{Interest}$ Interest Coverage Ratio\\
+EBITDA : earnings before interests, taxes, depreciation and amortization
+
+\textbf{Modigliani Miller :}\\
+If there are no taxes, no contracting costs, and the firm's investment policy is fixed, then the firm value is independent of the financing policy
+
+Changes in tax liabilities, contracting costs and investment policy in capital structure affects current firm value
+
+\textbf{Expected return on assets :} $R_A = R_E \cdot \frac{E}{D+E} + R_D \cdot \frac{D}{E+D}$\\
+$R_E = R_A + \frac{D}{E}\cdot (R_A-R_D)$ = Operating risk + Financing risk\\
+If Debt = 0, $R_E = R_A$ and all CF goes to shareholders
+
+EPS = $\frac{Earnings}{\#Shares}$ \hspace{0.5cm} $\beta_A = \beta_E \cdot \frac{E}{D+E} + \beta_D \cdot \frac{D}{E+D}$
+
+\textbf{Recapitalization :}\\
+Required $R_A$ before recapitalization : $R_A = \frac{EPS}{P_0}$\\
+Required rate of return after recapitalization : $R_E = R_A + \frac{D}{E}\cdot (R_A-R_D)$. $R_E > R_A$ because firm impose to shareholders financing risk\\
+Share price after recapitalization : $P = \frac{EPS_{new}}{R_E}$\\
+In perfect markets : no change, o/w : E increases because of tax savings
+
+\textbf{Debt and Taxes :}\\
+$V_L = V_U + PV(Tax\ Shields)$\\
+Interest payments to debt holders are deductible from taxable income (EBIT = before taxes and interests, then EBT = before taxes, taxable income)
+
+$r_{WACC} = \frac{E}{E+D}\cdot r_E + \frac{D}{E+D}\cdot(1-\tau_C)\cdot r_D$\\
+Add debt, WACC decreases and firm value increases\\
+$V_U = \frac{FCF}{r_A-g}$ ; $V_L = \frac{FCF}{r_{WACC}-g}$
+
+\textbf{Adjusted Present Value :} APV = NPV + Tax Benefits\\
+Market value of debt = D = PV(Future interest payments)\\
+PV(Interest Tax Shield) = $\tau_C \times D$\\
+$V_L = V_U + \tau_C \times D$
+
+\textbf{Bankruptcy costs :}\\
+Bankruptcy costs depends on probability of default, more debt = greater likelihood of default\\
+$V_L = V_U + PV(Tax\ Shields) -PV(Bankruptcy\ Costs)$\\
+Optimal debt = minimize WACC = maximize firm value
+\vspace{-0.4cm}
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline
+\multirow{4}{*}{$V_L$} & \multirow{3}{*}{$V_U$} & \multirow{2}{*}{Debt}\\
+ & & \\
+\cline{3-3}
+& & \multirow{2}{*}{Equity}\\
+\cline{2-2}
+& Tax Savings & \\
+\hline
+\end{tabular}
+\end{center}
+
+$EBIT \cdot (1-t) \cdot \mathrm{reinv.\ rate} = CAPEX + \Delta WC - dep$
+
+\textbf{Bottom up beta :}\\
+When a firm is not traded, take weighted average of unlevered beta of similar firms in same business\\
+Weight with $\frac{V_i}{\sum_j V_j}$\\
+Estimate $\beta_U$ with weighted average of other firms $\beta_U$, then compute $\beta_L$ with following formula, make assumption or know $\beta_D$\\
+With $\beta_L$ can compute $r_{WACC}$, $r_E$ and $r_D$\\
+$\beta_U = \frac{\beta_E + (1-\tau) \cdot \beta_D \cdot {}^D/_E}{1 + (1-\tau) \cdot {}^D/_E} \Leftrightarrow \beta_L = \beta_U + (1-\tau) \cdot (\beta_U - \beta_D) \cdot {}^D/_E$
+
+\textbf{Payback rule :}\\
+A good opportunity that pays back its investment quickly is a good idea\\
+Payback period : time to pay back the initial investment ; Payback period = $\frac{Initial\ cost}{FCF}$\\
+Not reliable because ignores time value of money and does not depend on cost of capital
+\vspace{-0.15cm}
+\section*{Introduction to Derivatives}
+\vspace{-0.2cm}
+
+Spot contract : agreement between seller and buyer at time 0, seller delivers the asset immediately and buyer pays immediately\\
+Forward contract : agreement at time 0 between buyer and seller, asset delivered and paid at time T (delivery date), fixed in the contract\\
+$S_t$ = spot price at time t (price in the market)\\
+$F_{T,t}$ = forward price at time t > 0 for a transaction at time t+T\\
+Long position (buy forward) : $CF_{t+T} = S_{t+T} - F_{t,T}$\\
+Short position (sell forward) : $CF_{t+T} = F_{t,T} - S_{t+T}$\\
+If $S_{t+T} > F_{t,T}$, the seller looses money
+
+\textbf{Future contract :} forward contract marked to market daily, contract's price adjusted each day\\
+\textbf{Margin calls :} securities deposited by an investor each day to reflect daily adjustments of the future price\\
+Buyer puts today on an account an amount set by the seller (Initial margin). Each day, check if the spot price for that asset changed, and modify the account balance accordingly (+- change of price for a unit $\times$ number of units). When the account's balance goes under the maintenance margin, the seller makes a margin call and the buyer needs to refund the account up to the initial margin.
+
+Forward contracts can be customized whereas future contracts have lower default risk
+
+\textbf{Contract's pricing :}\\
+Law of one price $\Leftrightarrow$ 2 equivalent goods or CF must have the same price : $F_{t,T} = \mathbb{E}(S_{t+T})$
+
+Prefer buy forward if $F_{t,T} < S_t(1+r)^{T}+S_t\cdot d^T$ (price discounted at time t+T and storage cost during time T)\\
+Agreement on a forward transaction : $F_{t,T} = S_t\cdot (1+r+d)^T$ with d = cost of storage per unit\\
+\textbf{Continuous compounding :} $F_{t,T} = e^{(r+d)\cdot T}\cdot S_t$\\
+If there are intermediate positive CF, then subtract them\\
+The buyer pays to the seller the interests he got on the price to pay between t and T+t, the seller pays back the CF he got between t and T+t
+
+\textbf{FX Receivables :}\\
+Spot rate : $S_t$, exchange rate at time t\\
+Forward rate : $F_{t,T}$, forward exchange rate set at time t for a transaction at time T+t
+
+\textbf{Discrete case :} $1+r_D = \frac{F}{S}\cdot (1+r_F)$\\
+\textbf{Continuous case :} $e^{r_D} = \frac{F}{S}\cdot e^{r_F}$\\
+$r_D$ : domestic rate ; $r_F$ : foreign rate ; $F$ : forward exchange rate ; $S$ : spot exchange rate\\
+Allows firms to eliminate risk due to rate fluctuation : hedged position
+
+\textbf{Options :}\\
+Call option : gives the buyer the right but not the obligation to purchase an asset for a specified price at or until a specified date\\
+Put option : same but allows the buyer to sell an asset\\
+Premium : price paid by the buyer to get the option. ($c_t$ and $p_t$)Price of option = PV(CF)\\
+Strike/exercise price : Fixed price for the asset\\
+European : only exercised at maturity date: $c_t - p_t = S_t - K(1+r)^{-(T-t)} -D_t$\\
+American : exercised any time until final date\\
+Bermudean: at final date + intermediate dates\\
+In the money : positive CF if exercise ; at : 0 CF ; out of : negative CF\\
+Never exercise out of the money option
+
+(Call) Payoff from a long position : $(S_t-K)^+$\\
+(Put) Payoff from a long position : $(K-S_t)^+$\\
+Exercise the option only if the current price is below (call) or above (put) K (strike price)\\
+It's possible that the total payout of an option is negative if we consider the initial cost of the option (if payout at expiration < option's cost)
+
+Option pricing (binomial model): $V=\Delta S +B \rightarrow V_{u,d} = \Delta_{u, d} + B(1+r)$ \\
+$\Delta = \frac{c_u - c_d}{S(u-d)} ; B= \frac{1}{1+r} \frac{u c_d - d c_u}{u-d} \rightarrow c_0 = \frac{1}{1+r} \big[ \frac{1+r-d}{u-d}c_u + (1-p)c_d \big]$
+
+\textbf{Combining options :}\\
+Straddle : long call option and put option on the same stock, same exercise date and strike price\\
+Speculative, investor does not know if it's going up or down
+
+Strangle : long call option and put option on the same stock, same exercise date but strike price call > put\\
+Same as above but area with "no benefits" is larger
+
+Butterfly spread : long 2 call options with different strike prices ($K_1$, $K_2$) and short 2 call options with price $\frac{K_1 + K_2}{2}$\\
+Low volatility, earn if spot price stays between $K_1$ and $K_2$
+
+Portfolio insurance :\\
+Put option (to sell your portfolio) ensure a given outcome to a portfolio : if your portfolio is worth < K, exercise put option and sell it, o/w keep your portfolio\\
+Possible to sell a call option to pay for the put option
+
+\end{document}
