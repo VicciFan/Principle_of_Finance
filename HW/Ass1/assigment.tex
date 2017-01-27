@@ -1,0 +1,425 @@
+%
+% LATEXBONES
+%
+\documentclass[a4paper,11pt,twoside]{article}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage[english]{babel}
+\usepackage[applemac]{inputenc}
+\usepackage[colorlinks,bookmarks=false,linkcolor=blue,urlcolor=blue]{hyperref}
+\usepackage{subfigure}
+\usepackage{here}
+\usepackage{wrapfig}
+\usepackage{fancyhdr}
+\usepackage{dirtytalk}
+
+%drow graph
+\usepackage{fancybox}
+\usepackage{tikz}
+\usepackage{capt-of}
+
+% print code
+\usepackage{listings}
+\usepackage{algorithm2e}
+\usepackage{verbatim}
+
+% push at the bottom
+\newenvironment{bottompar}{\par\vspace*{\fill}}{\clearpage}
+
+% landscape
+\usepackage{pdflscape}
+
+\paperheight=297mm
+\paperwidth=210mm
+
+\setlength{\textheight}{235mm}
+\setlength{\topmargin}{-1.2cm} 
+
+\setlength{\parindent}{0pt}
+
+\setlength{\textwidth}{15cm}
+\setlength{\oddsidemargin}{0.56cm}
+\setlength{\evensidemargin}{0.56cm}
+
+% quotes
+\usepackage{framed}
+\newcommand*{\signed}[1]{%
+  \unskip\hspace*{1em plus 1fill}%
+  \nolinebreak[3]\hspace*{\fill}\mbox{#1}
+}
+
+\pagestyle{plain}
+
+% multiline equation -- call it with \begin{multline}
+\usepackage{amsmath}
+
+
+% --- equations ---
+\def \be {\begin{equation}}
+\def \ee {\end{equation}}
+%\def \dd  {{\rm d}}m
+
+% --- links ---
+\newcommand{\mail}[1]{{\href{mailto:#1}{#1}}}
+\newcommand{\ftplink}[1]{{\href{ftp://#1}{#1}}}
+
+
+
+
+
+
+
+% ======= Document ======
+
+%----------------------------------------------------------------------------------------
+% HEADING SECTIONS
+%----------------------------------------------------------------------------------------
+
+% --- header ---
+\fancyhead[L]{Applied Data Analysis}
+\fancyhead[R]{Summary}
+
+% no newpage after title
+\let\endtitlepage\relax
+
+% no enumeration of sections
+\setcounter{secnumdepth}{0}
+
+\begin{document}
+\begin{titlepage} %Titre
+\begin{center}
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for the horizontal lines, change thickness here
+\center % Center everything on the page
+ 
+ 
+ %----------------------------------------------------------------------------------------
+% TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+
+
+
+\begin{figure} [h] %----------- SubGraph ---------------------
+\centerline{
+\subfigure{\includegraphics[height = 2 cm]{./pic/EPFL.png}  }
+} 
+\end{figure}
+
+\HRule \\[0.4cm]
+{ \huge \bfseries MGT-482 Principles of Finance \\Assignment 1}\\[0.4cm] % Title of your document
+
+\begin{minipage}[t]{0.4\textwidth}
+\flushleft
+Prof. Erwan Morellec
+\end{minipage}
+~
+\begin{minipage}[t]{0.55\textwidth}
+\flushright
+Team: \\
+Joachim Muth - \mail{joachim.muth@epfl.ch}\\
+Andreas Bill - \mail{andreas.bill@epfl.ch}\\
+Nicolas Roth - \mail{nicolas.roth@epfl.ch}\\
+\end{minipage}
+\begin{center}
+\today
+\end{center}
+\HRule \\
+ %----------------------------------------------------------------------------------------
+
+\end{center}
+\end{titlepage}
+
+
+
+\pagestyle{fancy}
+% ================ Introduction ==============
+% ================ Ex 1 ==============
+\section{Exercice 1}
+
+Following the rule of {\bf time value of money}, the present value is calculated with the following formula:
+\be
+PV(CF) = CF \cdot discount factor
+\ee
+
+Then the present of value is calculated with
+
+\be
+PV = 10'000_{1 year} + 10'000_{3 years} = \frac{10'000}{1.07} + \frac{10'000}{(1.07)^3} = 17'508.773
+\ee
+
+% ================ Ex 2 ==============
+\section{Exercice 2}
+
+The investment is
+
+\be
+PV(costs) = 1'000 + 5'000_{2 years} = 1'000 + \frac{5'000}{1.02^2} = 5'805.84
+\ee
+
+\begin{multline}
+PV(benefits) = 4'000_{1 year} + 4'000_{2 years} + 4'000_{3 years} = \\ \frac{4'000}{1.02} + \frac{4'000}{1.02^2} + \frac{4'000}{1.02^3} = 11'535.53
+\end{multline}
+
+Then the \textbf{Net Present Value} of this project is 
+
+\be
+NPV = PV(benefits) - PV(costs) = 11'535.53 - 5'805.84 = 5'729.69
+\ee
+
+The NPV is positive so we would undertake the project.
+
+
+% ================ Ex 3 ==============
+\section{Exercice 3}
+
+First we convert CHF into US Dollars: $250'000 CHF * 0.9 = \$ 225'000$
+
+The investment is
+
+\be
+PV(costs) = \$ 225'000 
+\ee
+
+The {\bf Present Value} of the benefit is
+\be
+PV(benefits) = 310'000_{1 year}= \frac{310'000}{1.05}= 295'238.09
+\ee
+
+Then the \textbf{Net Present Value} of this project is 
+
+\be
+NPV = PV(benefits) - PV(costs) = 295'238.09 - 250'000 = 45238.09
+\ee
+
+The NPV is positive so we would undertake the project.
+
+% ================ Ex 4 ==============
+\section{Exercice 4}
+
+Under the {\bf Law of One Price}, securities that produce the same cash flows must have the same price
+
+\be
+P(A) + P(B) = P(C)
+\ee
+
+As $P(A) = \$ 80$ and $P(C) = \$ 180$, $P(B)$ must be equal to 
+
+\be
+P(B) = P(C) - P(A) = 180 - 80 = \$100
+\ee
+
+Following this rule, there is no arbitrage opportunity.
+
+% ================ Ex 5 ==============
+\section{Exercice 5}
+
+\begin{multline}
+NPV(A) = -150 + 50_{1year} + 75_{2year} + 100_{3year} = \\ -150 + \frac{50}{1.1} + \frac{75}{1.1^2}+ \frac{100}{1.1^3} = 32.56
+\end{multline}
+
+\begin{multline}
+NPV(B) = -250 + 150_{1year} + 150_{2year} - 50_{3year} = \\ -250 + \frac{150}{1.1} + \frac{150}{1.1^2}+ \frac{-50}{1.1^3} = -27.23
+\end{multline}
+
+You should by project A but not B.
+
+% ================ Ex 6 ==============
+\section{Exercice 6}
+
+First we calcule the present value of the loan we have to pay to the bank
+
+\be
+PV = \frac{1000}{1.05} + \frac{1000}{1.05^2} + \frac{1000}{1.05^3} = 2723.24
+\ee
+
+Then we calculate what should the bank ask you to pay at the end of the third year to have exactly the same present value
+
+\be
+ PV_{offer 1} == PV_{offer 2} = \frac{x}{1.05^3} = 3152.49
+ \ee
+ 
+ \be
+x = 3152.49
+\ee
+
+Then you should not accept a payment of more than $3152.49$.
+
+
+% ================ Ex 7 ==============
+\section{Exercice 7}
+
+From your 18th birthday to your 25th, there is 7 years where you can let the money.
+
+\be
+V_{7 years} = V_{now} * (1.08)^7 = 39'960 * (1.08)^7 = 68'484.41
+\ee
+
+a) You will have \$ 68'484.41 at your 25th birthday
+
+Originally, 18 years ago, the value of this money was
+\be
+V_{0 year} = \frac{V_{now}}{(1.08)^{18}} = \frac{39'960}{(1.08)^{18}} = 9'999.95
+\ee
+
+Your parents originally put \$ 9'999.95 in the account (if they are normal people, I guess they actually put \$10'000).
+
+% ================ Ex 8 ==============
+\section{Exercice 8}
+
+The couple's spendings are represented as an outgoing cashflow. The present value of a cash flow is calculated as follows:
+
+\be 
+PV=CF \cdot \mathrm{Discout Rate}
+\ee
+
+One can determine the following table (the time scale starts at 0 due to payables at the beginning of the year):
+
+\begin{center}
+	\begin{tabular}{|l|c|c|c|c|c|}
+		\hline
+		Time & 0 & 1 & 2 & 3 & ... \\
+		\hline
+		Cash flow [\$] & 10000 & $10000 \cdot 1.05$ & $1000 \cdot 1.05^2$ & $1000 \cdot 1.05^3$ & ... \\
+		\hline
+		Present value added [\$] &10000 & $\frac{10000 \cdot 1.05}{1.05}$&$\frac{10000 \cdot 1.05^2}{1.05^2}$&$\frac{10000 \cdot 1.05^3}{1.05^3}$ &... \\
+		\hline
+	\end{tabular}
+\end{center}
+
+Summing up all the present values, one gets the value of the initial investment of \textbf{\$13'000}.
+
+
+\section{Exercice 9}
+
+The table below describes the savings made each year thanks to the new machine: 
+
+\begin{center}
+	\begin{tabular}{|l|c|c|c|c|c|c|}
+		\hline
+		Time & 1 & 2 & 3 & ... & i & ...\\
+		\hline
+		Savings [\$]& 1000 & $\frac{1000}{1.02}$ & $\frac{1000}{1.02^2}$ & ... & $\frac{1000}{1.02^i}$ & ...\\
+		\hline
+	\end{tabular}
+\end{center}
+
+In this problem, the constant payment is called the perpetuity C. Th present value of a growing perpetuity can easily be determined with the following formula:
+
+\be
+ PV(\mathrm{Savings}) = \frac{C}{r-g} 
+\ee
+
+where $r=0.05$ is the interest rate and $g=-0.02$ is the growth rate. The final present value of my saving therefore is \textbf{\$14'285.7}.
+
+\section{Exercice 10}
+
+In the first part of the problem, we will use the present value formula for an annuity $C$ for $N$ periods with an interest rate $r$:
+
+\be
+PV=C \cdot \frac{1}{r} \cdot \left(1-\frac{1}{(1+r)^N}\right)\\
+\ee
+\be
+300'000=C \cdot \frac{1}{0.07} \cdot \left(1-\frac{1}{(1+0.07)^{30}}\right)
+\ee
+\be
+C= \frac{300'000 \cdot 0.07}{1-\frac{1}{(1.07)^{30}}}= 24'175.92
+\ee
+
+The annual payment will be \textbf{\$24'175.92}.
+\\ \newline
+The second part of the problem consists in determine the present value for 30 years if only \$23'500 can be afforded per year. We have:
+
+\be
+PV = 23500 \cdot \frac{1}{0.07} \cdot \left( 1 - \frac{1}{1.07^{30}} \right) = 29'1612.5
+\ee
+
+The difference compared to the first situation is $300'000-291'612.5=8'387.5$ representing the present value of the balloon payment, adding the interests for 30 years, we have $8'387.5 \cdot 1.07^{30}=63'848$
+\\ \newline
+The balloon payment in 30 years will be \textbf{\$63'848}.
+
+\section{Exercice 11}
+
+In this case we can use two different types of present values $PV_1$ and $PV_2$. Let $PV_1$ be the annuity with payments that grow at the rate $g$ when the discount rate is $r$. The calculation is as follows:
+\be
+PV_1=C_1 \cdot \frac{1}{r-g} \cdot \left(1-\left(\frac{1+g}{(1+r)}\right)^N\right)+C_1
+\ee
+
+It is important not to forget the first payment done today (at t=0). Now, let $PV_2$ be the present value of \$2 million kept in an account during 35 years. We have:
+
+\be
+PV_2=\frac{C_2}{r^N}
+\ee
+
+The trick in this exercise is to equalize both $PV_1$ and $PV_2$ to determine the initial payment to make.
+
+\be
+PV_1=PV_2
+\ee
+
+\be
+C_1 \cdot \frac{1}{r-g} \cdot \left(1-\left(\frac{1+g}{1+r}\right)^N\right)+C_1=\frac{C_2}{(1+r)^N}
+\ee
+
+\be
+	C_1 = \frac{C_2 \cdot \frac{1}{(1+r)^{N}}}{1 + \frac{1}{r-g} \left( 1 - \left( \frac{1+g}{1+r} \right)^{N} \right)}= \frac{2000000 \cdot \frac{1}{1.05^{35}}}{1 + \frac{1}{0.02} \left( 1 - \left( \frac{1.03}{1.05} \right)^{35} \right)} = 14222.3
+\ee
+
+I will need to put \textbf{\$14'222.3} today into my account to reach the \$2 million in 35 years.
+
+\section{Exercice 12}
+
+In this exercise, at time $t=0$, my grandmother spends \$200'000 (negative cash flow). Then at time $t=1$, she receives \$25'000(positive cash flow), at time $t=2$ \$25'000, and so on until she dies. The present value of her annuity is:
+
+\be
+PV=C \cdot \frac{1}{r} \cdot \left(1-\frac{1}{(1+r)^N}\right)=25'000 \cdot \frac{1}{0.05} \cdot \left(1-\frac{1}{1.05^N}\right)\\
+\ee
+
+Isolating N in the above relation we get and setting the upper limit of $PV$ to \$200'000 we get
+
+\be
+N \geq \log \left( \frac{1}{1 - \frac{200'000 \cdot 0.05}{25'000}} \right) = 10.46
+\ee
+
+In order to reach the desired amount, she must live at least \textbf{11 years} after the day she retired. 
+
+
+
+%======= TABLEAU ===========
+%\begin{center} %---------------Tab--------------
+%\begin{tabular} {| c | c | c | c | c | c |}
+%\hline
+ %& & & & & $\\ \hline
+%\end{tabular}
+%\end{center}
+
+
+%===========GRAPH================
+%\begin{figure} %---------------------Graph---------------------------
+%\begin{center}
+%\includegraphics[width=12cm]{graph/ampli2} 
+%\end{center}
+%\caption{\em  \label{label}
+%L�gende
+%}
+%\end{figure}
+
+
+%========SUBGRAPH=======
+%\begin{figure} [h] %----------- SubGraph ---------------------
+%\centerline{
+%\subfigure[ sublegend ] {\label{sfig:thetat} \includegraphics[width=7cm]{ graph/graph_convdt3 } }
+%\subfigure[ sublegend ] {\label{sfig:thetafin} \includegraphics[width=7cm]{ graph/graph_convtfin } } 
+%}
+%\caption{\label{ label } 
+%L�gende
+%} 
+%\end{figure}
+
+
+
+
+
+
+
+
+\end{document} %%%% THE END %%%%

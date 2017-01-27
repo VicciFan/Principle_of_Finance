@@ -1,0 +1,462 @@
+%
+% LATEXBONES
+%
+\documentclass[a4paper,11pt,twoside]{article}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage[english]{babel}
+\usepackage[applemac]{inputenc}
+\usepackage[colorlinks,bookmarks=false,linkcolor=blue,urlcolor=blue]{hyperref}
+\usepackage{subfigure}
+\usepackage{here}
+\usepackage{wrapfig}
+\usepackage{fancyhdr}
+\usepackage{dirtytalk}
+
+%drow graph
+\usepackage{fancybox}
+\usepackage{tikz}
+\usepackage{capt-of}
+
+% print code
+\usepackage{listings}
+\usepackage{algorithm2e}
+\usepackage{verbatim}
+
+% push at the bottom
+\newenvironment{bottompar}{\par\vspace*{\fill}}{\clearpage}
+
+% landscape
+\usepackage{pdflscape}
+
+\paperheight=297mm
+\paperwidth=210mm
+
+\setlength{\textheight}{235mm}
+\setlength{\topmargin}{-1.2cm} 
+
+\setlength{\parindent}{0pt}
+
+\setlength{\textwidth}{15cm}
+\setlength{\oddsidemargin}{0.56cm}
+\setlength{\evensidemargin}{0.56cm}
+
+% quotes
+\usepackage{framed}
+\newcommand*{\signed}[1]{%
+  \unskip\hspace*{1em plus 1fill}%
+  \nolinebreak[3]\hspace*{\fill}\mbox{#1}
+}
+
+\pagestyle{plain}
+
+% --- equations ---
+\def \be {\begin{equation}}
+\def \ee {\end{equation}}
+%\def \dd  {{\rm d}}m
+
+% --- links ---
+\newcommand{\mail}[1]{{\href{mailto:#1}{#1}}}
+\newcommand{\ftplink}[1]{{\href{ftp://#1}{#1}}}
+
+
+
+
+
+
+% ======= Document ======
+
+%----------------------------------------------------------------------------------------
+% HEADING SECTIONS
+%----------------------------------------------------------------------------------------
+
+% --- header ---
+\fancyhead[L]{Finance}
+\fancyhead[R]{Homework}
+
+\let\endtitlepage\relax
+
+\begin{document}
+\begin{titlepage} %Titre
+\begin{center}
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for the horizontal lines, change thickness here
+\center % Center everything on the page
+ 
+ 
+ %----------------------------------------------------------------------------------------
+% TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+
+
+
+\begin{figure} [h] %----------- SubGraph ---------------------
+\centerline{
+\subfigure{\includegraphics[height = 2 cm]{./pic/EPFL.png}  }
+} 
+\end{figure}
+
+\HRule \\[0.4cm]
+{ \huge \bfseries MGT-482 Principles of Finance \\Assignment 1}\\[0.4cm] % Title of your document
+
+\begin{minipage}[t]{0.4\textwidth}
+\flushleft
+Prof. Erwan Morellec
+\end{minipage}
+~
+\begin{minipage}[t]{0.55\textwidth}
+\flushright
+Team: \\
+Joachim Muth - \mail{joachim.muth@epfl.ch}\\
+Andreas Bill - \mail{andreas.bill@epfl.ch}\\
+Nicolas Roth - \mail{nicolas.roth@epfl.ch}\\
+\end{minipage}
+\begin{center}
+\today
+\end{center}
+\HRule \\
+ %----------------------------------------------------------------------------------------
+
+\end{center}
+\end{titlepage}
+
+
+
+\pagestyle{fancy}
+
+% ================ Ex 1 ==============
+\section{Capital structure in s perfect market}
+\subsection*{Exercice 1}
+\subsubsection*{a)}
+ 
+ Expected value of Acort equity:
+ $$
+ E[V_{equity}] = \$50 \cdot 0.8 + \$20 \cdot 0.2 = \$44 million
+ $$
+ 
+ Discount the value to have the present value by the cost of capital
+ $$
+ PV = \frac{E[V]}{1 + r_E} = \frac{\$44}{1.1} = \$40 million
+ $$
+ 
+ %==========================
+ \subsubsection*{b)}
+ Present value of the debt according to risk-free rate:
+ $$
+ PV_{debt} = \frac{\$20}{1 + r_E} = \frac{\$20}{1.05} = \$19.05 million
+ $$
+ 
+ Then,
+ $$
+ PV_{equity} = PV_{\textrm{unlevered equity}} - PV_{debt} = \$40 - \$19.05 = \$ 20.95 million
+ $$
+  %==========================
+ \subsubsection*{c) Without leverage}
+ 
+ \begin{multline}
+ E[R_E] = p_1 \cdot R_{E1} + p_2 \cdot R_{E2} = \\ p_1 \cdot \frac{\$50 - \$40}{\$40} + p_2 \cdot \frac{\$20 - \$40}{\$40} =
+ 0.8 \cdot 0.25 + 0.2 \cdot -0.5 = 0.1 = 10\%
+\end{multline}
+  
+   %==========================
+   \subsubsection*{c) With leverage}
+  
+  $$
+  r_e = r_u + \frac{D}{E} \cdot (r_U - r_D) = 10\% + \frac{19.05}{20.95} \cdot (10 \%  - 5 \%) = 14.54 \%
+  $$
+  
+  \subsubsection*{d)}
+  In unlevered case, the worst case is to obtain an equity value of \$20 million after on year (then a return of -50\%). 
+  
+  The same situation can occurs in the levered case, but with an additional debt to pay back which decrease the value of the equity to \$0. We then have a return of -100\%.
+  
+% ================ Ex 2 ==============
+\subsection*{Exercice 2}
+\subsubsection*{a)}
+$$
+EPS = \frac{\$5 million}{10 million} = \$0.5
+$$
+
+%=====================
+\subsubsection*{b)}
+RC's equity cost of capital
+$$
+P_{current} = \frac{EPS}{R_A} \rightarrow R_A = \frac{EPS}{P_{current}} = \frac{\$0.5}{\$5} = 10\%
+$$
+
+%=====================
+\subsubsection*{c)}
+RC can repurshase:
+
+$$
+N_{shares} = \frac{\$3 milion}{P_{current}} = \frac{\$3 milion}{\$ 5} = 600'000
+$$
+
+$$
+N_{\textrm{shares NEW}} = 10 million - 600'000 = \$ 9.4 million
+$$
+
+
+%=====================
+\subsubsection*{d)}
+The calcul is the same as in section a), but with a debt interest to pay back. Then:
+$$
+EPS = \frac{EBIT - interest}{N_{shares}} = \frac{\$5 \textrm{million}  - \$3 \textrm{million} \cdot 0.05 }{9.4 \textrm{million}} = 0.516
+$$
+
+And new price of RC shares are
+$$
+P = \frac{EPS}{R_E} = \frac{0.516}{10.52 \%} = \$5
+$$
+
+With $R_E = R_A + \frac{D}{E} \cdot (R_A - R_D) = 10\% + \frac{3}{47} \cdot (10\% - 5\%) = 10.52 \%$
+
+% ================ Ex 3 ==============
+\subsection*{Exercice 3}
+Debt $D_0$ is the unknown initial debt. Debt $D_1$ is the debt after borrowing \$30 million (and using \$10 million cash). The relation between both is: $D_1 = D_0 + 40$. 
+
+The current market value of the entreprise does not change, thus $V_{L0} = 120 + D_0 = V_{L1}$.
+
+\begin{multline}
+\rho = \frac{\beta_{E1}}{\beta_{E0}} = \frac{\beta_A + \frac{D1}{E1} (\beta_A - \beta_d)}{\beta_A + \frac{D0}{E0} (\beta_A - \beta_d)} 
+= \frac{\beta_A + \frac{D1}{E1} \beta_A}{\beta_A + \frac{D0}{E0} \beta_A}  
+= \\ 
+\frac{1 + \frac{D1}{E1}}{1 + \frac{D0}{E0}} = \frac{1 + \frac{D0 + 40}{80}}{1 + \frac{D0}{120}}
+= \frac{\frac{80 + D0 + 40}{80}}{\frac{120 + D0}{120}} = \frac{120}{80} = 1.5
+\end{multline}
+
+Therefore, $\beta_{E1} = \beta_{E0} \cdot \rho = 1.5 \cdot 1.5 = 2.25$
+
+
+%=================================
+\section{Capital structure with frictions}
+
+%===============
+\subsection*{Exercice 4}
+
+%===============
+\subsubsection*{a)}
+The share price of BBB will not change in perfect market. Indeed, the new equity value of BBB will be
+
+$$
+E_{new} = E_{old} - \textrm{value repurchased}  = \$20 \cdot 30 million - \$81 million = \$ 519 million
+$$
+
+And the number of shared purchased
+
+$$
+n_{shares} = \frac{\$81 million}{\$20} = 4.05 millions
+$$
+
+Then the new price is 
+$$
+P = \frac{519 million}{30million - 4.05million} = \$20
+$$
+
+%===============
+\subsubsection*{b)}
+The equity value take now into account the corporate taxes of 35\%
+
+\begin{multline}
+E_{new} = E_{old} - \textrm{value repurchased} + \textrm{corporate taxe} =\\ \$20 \cdot 30 million - \$81 million + \$81million \cdot 35\% = \$ 547.19 \textrm{ million}
+\end{multline}
+
+The number of purchased shares is the same, we then have a price of
+$$
+P = \frac{547.19 million}{30 - 4.05 million} = \$21.09
+$$
+
+\subsubsection*{c)}
+We now take into account corporate taxes and financial distress costs.
+
+\begin{multline}
+E_{new} = E_{old} - \textrm{value repurchased} + \textrm{corporate taxe} - \textrm{financial distress costs} =\\ \$20 \cdot 30 million - \$81 million + \$81million \cdot 35\% - \textrm{financial distress costs}
+\end{multline}
+
+We know that share price is $\$ 20.5$ then,
+
+\begin{multline}
+E_{new} = P \cdot n_{shares new} = 20.5 \cdot 25.95 million =\\  \$20 \cdot 30 million - \$81 million + \$81million \cdot 35\% - \textrm{financial distress costs}
+\end{multline}
+
+So financial distress costs $= \$15.215$ million.
+
+% ================ Ex 4 ==============
+\subsection*{Exercice 5}
+\subsubsection*{a)}
+
+Unlevered cost of capital of Blue Ltd:
+
+$$
+\textrm{Unlevered Cost of Capital} = R_f + \beta_U (R_{mkt} - R_f) = 0.04 + \beta_U (0.11 - 0.4)
+$$
+
+$\beta_U$ is calculated with the equation
+$$
+\beta_U = \frac{\beta_E + (1 - \tau) \cdot \beta_D \cdot D/E}{1 + (1 - \tau) \cdot D/E}
+$$
+
+We calculate the $\beta_U$ for firms Red, Black and Yellow and then do a weighted average that leads to:
+
+$$
+\beta_U = 0.25 \cdot 0.94 + 0.40 \cdot 0.85 + 0.35 \cdot 0.56 = 0.77
+$$
+
+(cf: table below)
+
+\begin{center}
+	\begin{tabular}{|l|c|c|c|}
+		\hline
+		 & Red & Black & Yellow \\
+		\hline
+		$\beta_E$ & 1.20 & 1.40 & 1.10 \\
+		\hline
+		$\beta_D$ & 0.00 & 0.00 & 0.00 \\
+		\hline
+		${}^D/_{(D+E)}$ & 0.30 & 0.50 & 0.60 \\
+		\hline
+		${}^D/_{E}$ & 0.43 & 1.00 & 1.50 \\
+		\hline
+		Market cap. & 250 & 400 & 350 \\
+		\hline
+		Ratio & 0.25 & 0.40 & 0.35 \\
+		\hline
+		$\beta_U$ & 0.94 & 0.85 & 0.56 \\
+		\hline
+	\end{tabular}
+\end{center}
+
+Then
+$$
+\textrm{Unlevered Cost of Capital} = 0.04 + 0.77 (0.11 - 0.4) = 9.39\%
+$$
+
+\subsubsection*{b)}
+Firm value, using APV approach, is
+$$
+APV = \frac{FCF_U}{R_U} + PV(tax shield) = \frac{300}{9.39 \%} - 2000 \cdot 35 \% = \$ 3194.88
+$$
+
+
+% ================ Ex 5 ==============
+\subsection*{Exercice 6}
+\subsubsection*{a)}
+
+Value of equity: $E = \frac{D}{E/D} = 20'000 / 0.5 = \$40'000$
+
+Share price: $ P = \frac{E}{n_{shares}} = \frac{40'00}{10'000} = \$4 $
+\subsubsection*{b)}
+Expected return: $E[R] = R_A + \frac{D}{E} \cdot (R_A  R_D) = 10 \% + 0.5 (10 \% - 5\%) = 12.5 \% $
+\subsubsection*{c)}
+Weighted average cost of company:
+$$
+R_{WACC} = \frac{E}{E + D} R_E + \frac{D}{E + D} (1 - \tau) R_D = \frac{40'000}{60'000} \cdot 12.5 \% + \frac{20'000}{60'000} \cdot 0.7 \cdot 5 \% = 9.5 \%
+$$
+\subsubsection*{d)}
+Distributed amount to debtholders: $D \cdot R_D = 20'000 \cdot 5\% = \$1'000$
+
+Distributed amount to shareholders: $ E \cdot R_E \cdot (1 - \tau) = 40'000 \cdot 12.5 \% \cdot 0.7 = \$3'500 $
+\subsubsection*{e)}
+EBIT: $Assets \cdot R_A = (V_L - \tau D) \cdot R_A = 60'000 - 0.3 \cdot 20'000 = 54'000 \cdot 10\% = \$5'400 $
+
+EBIT before taxes: $5'400 - 20'000 \cdot 5\% = \$ 4'400$
+\subsubsection*{f)}
+Debt: $20'000 + 10'000 = \$ 30'000$
+
+Tax shield: $30'000 \cdot 0.3 = \$9'000$
+
+Value of the firm: $V_L = V_U + \tau \cdot D = 54'000 + 9'000 = \$63'000$
+
+Equity value: $E = V_L - D = 63'000 - 30'000 = \$ 33'000$
+\subsubsection*{g)}
+Using the borrowed $\$ 10'000$ the company can purchased $\frac{10'000}{4} = 2'500$ shares.
+
+The new price is then $P = \frac{E}{n_{shares}} = \frac{33'000}{7'500} = \$ 4.4$
+\subsubsection*{h)}
+EBIT: $Assets \cdot R_A = (V_L - \tau D) \cdot R_A = 63'000 - 0.3 \cdot 30'000 = 54'000 \cdot 10\% = \$5'400 $
+
+Net income = $(EBIT - \textrm{interest})(1- \tau) = (5'400 - 30'000 \cdot 5 \%) \cdot 0.7 = \$2'730 $
+\subsubsection*{i)}
+Debt to equity ratio: $\frac{D}{E} = \frac{30'000}{33'000} = 0.91$
+
+WAAC : $R_{WACC} = \frac{E}{E+D} R_E + \frac{D}{E+D} (1-\tau ) R_D = \frac{33'000}{63'000} \cdot 14.54 \% + \frac{30'000}{63'000} \cdot 0.7 \cdot 5 \% = 9.286 \%$
+
+As the WAAC of the company is smaller thant before the share purchase, the company increased its value and it was, indeed, a good decision.
+
+
+% ================ Ex 7 ==============
+\subsection*{Exercice 7}
+
+\subsubsection*{a)}
+From $D/E = 1/3$ we have equation $V_L = E + D = 3D + D = 4D = 160$
+
+Debt : $D = 160 / 4 = \$40$
+
+Equity: $E = 160 - D = \$120$
+
+\subsubsection*{b)}
+
+If it was not levered, the value would have been: 
+$$
+V_L = K(D) = V_U + \tau \cdot D \rightarrow V_U = V_L + K(D) - \tau \cdot D = 160  + \frac{40}{10} + \frac{40^2}{500} -0.3 \cdot 40 = \$ 155.2
+$$
+
+\subsubsection*{c)}
+Optimal capital structure, maximize $V_L$ with respect to $D$:
+$$
+\max V_U + \tau \cdot D - K(D) = \max V_U + \tau \cdot D - \frac{D}{10} - \frac{D^2}{500}
+$$
+
+To find optimum, we search $D^*$ such as $\frac{\delta V_L}{\delta D}(D^*) = 0$
+
+$$\frac{\delta V_L}{\delta D} = \tau - {}^1/_{10} - {}^1/_{250} \cdot D \to D^* = 250 \cdot (\tau - {}^1/_{10}) = 50$$
+
+
+\subsubsection*{d)}
+If company restructures with $D=50$ then,
+
+$$V_L = V_U + \tau \cdot D - K(D) = 155.2 + 0.3 \cdot 50 - K(50) = \$160.2 $$
+
+and the debt to equity ratio,
+
+$$ \frac{D}{E} = \frac{D}{V_L - D} = \frac{50}{160.2 - 50} = 0.454 $$
+
+%======= TABLEAU ===========
+%\begin{center} %---------------Tab--------------
+%\begin{tabular} {| c | c | c | c | c | c |}
+%\hline
+ %& & & & & $\\ \hline
+%\end{tabular}
+%\end{center}
+
+
+%===========GRAPH================
+%\begin{figure} %---------------------Graph---------------------------
+%\begin{center}
+%\includegraphics[width=12cm]{graph/ampli2} 
+%\end{center}
+%\caption{\em  \label{label}
+%Lï¿½gende
+%}
+%\end{figure}
+
+
+%========SUBGRAPH=======
+%\begin{figure} [h] %----------- SubGraph ---------------------
+%\centerline{
+%\subfigure[ sublegend ] {\label{sfig:thetat} \includegraphics[width=7cm]{ graph/graph_convdt3 } }
+%\subfigure[ sublegend ] {\label{sfig:thetafin} \includegraphics[width=7cm]{ graph/graph_convtfin } } 
+%}
+%\caption{\label{ label } 
+%Lï¿½gende
+%} 
+%\end{figure}
+
+
+
+
+
+
+
+
+\end{document} %%%% THE END %%%%

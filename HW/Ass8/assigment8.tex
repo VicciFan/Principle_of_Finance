@@ -1,0 +1,234 @@
+%
+% LATEXBONES
+%
+\documentclass[a4paper,11pt,twoside]{article}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage[english]{babel}
+\usepackage[applemac]{inputenc}
+\usepackage[colorlinks,bookmarks=false,linkcolor=blue,urlcolor=blue]{hyperref}
+\usepackage{subfigure}
+\usepackage{here}
+\usepackage{wrapfig}
+\usepackage{fancyhdr}
+\usepackage{dirtytalk}
+
+%drow graph
+\usepackage{fancybox}
+\usepackage{tikz}
+\usepackage{capt-of}
+
+% print code
+\usepackage{listings}
+\usepackage{algorithm2e}
+\usepackage{verbatim}
+
+% push at the bottom
+\newenvironment{bottompar}{\par\vspace*{\fill}}{\clearpage}
+
+% landscape
+\usepackage{pdflscape}
+
+\paperheight=297mm
+\paperwidth=210mm
+
+\setlength{\textheight}{235mm}
+\setlength{\topmargin}{-1.2cm} 
+
+\setlength{\parindent}{0pt}
+
+\setlength{\textwidth}{15cm}
+\setlength{\oddsidemargin}{0.56cm}
+\setlength{\evensidemargin}{0.56cm}
+
+% quotes
+\usepackage{framed}
+\newcommand*{\signed}[1]{%
+  \unskip\hspace*{1em plus 1fill}%
+  \nolinebreak[3]\hspace*{\fill}\mbox{#1}
+}
+
+\pagestyle{plain}
+
+% --- equations ---
+\def \be {\begin{equation}}
+\def \ee {\end{equation}}
+%\def \dd  {{\rm d}}m
+
+% --- links ---
+\newcommand{\mail}[1]{{\href{mailto:#1}{#1}}}
+\newcommand{\ftplink}[1]{{\href{ftp://#1}{#1}}}
+
+
+
+
+
+
+% ======= Document ======
+
+%----------------------------------------------------------------------------------------
+% HEADING SECTIONS
+%----------------------------------------------------------------------------------------
+
+% --- header ---
+\fancyhead[L]{Finance}
+\fancyhead[R]{Assignment 8}
+
+\let\endtitlepage\relax
+
+\begin{document}
+\begin{titlepage} %Titre
+\begin{center}
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for the horizontal lines, change thickness here
+\center % Center everything on the page
+ 
+ 
+ %----------------------------------------------------------------------------------------
+% TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+
+
+
+\begin{figure} [h] %----------- SubGraph ---------------------
+\centerline{
+\subfigure{\includegraphics[height = 2 cm]{./pic/EPFL.png}  }
+} 
+\end{figure}
+
+\HRule \\[0.4cm]
+{ \huge \bfseries MGT-482 Principles of Finance \\Assignment 8}\\[0.4cm] % Title of your document
+
+\begin{minipage}[t]{0.4\textwidth}
+\flushleft
+Prof. Erwan Morellec
+\end{minipage}
+~
+\begin{minipage}[t]{0.55\textwidth}
+\flushright
+Team: \\
+Joachim Muth - \mail{joachim.muth@epfl.ch}\\
+Andreas Bill - \mail{andreas.bill@epfl.ch}\\
+Nicolas Roth - \mail{nicolas.roth@epfl.ch}\\
+\end{minipage}
+\begin{center}
+\today
+\end{center}
+\HRule \\
+ %----------------------------------------------------------------------------------------
+
+\end{center}
+\end{titlepage}
+
+
+
+\pagestyle{fancy}
+
+% ================ Ex 1 ==============
+\section{Exercice 1}
+
+Following answer document shows the formulas used for the computations. All numerical calculations have been carried out in the Excel sheet. \\
+
+In order to estimate the value of the firm with the WACC using the DCF apporoach, we will go through three main steps. First, we will compute the $r_{WACC}$, then the free cash flow and finally the terminal value. Let's compute $r_{WACC}$ using the bottom-up approach as discussed in the lecture. The following formal determines $\beta_U$ of each firm $i$. 
+
+\be
+	{\beta_{U,i}} = \frac{{\beta_{E,i}} + (1-\tau) \cdot {\beta_{D,i}} \cdot {}^{D_i}/_{E_i}}{1 + (1-\tau) \cdot {}^{D_i}/_{E_i}}
+\ee
+
+The total $\beta_U$ is then obtained summing up $\beta_{U,i}$ of each firm taking the weight into account. We have
+
+\be
+\beta_U = \sum_{i} w_i \cdot {\beta_{U,i}} = \sum_{i} w_i \cdot \frac{{\beta_{E,i}} + (1-\tau) \cdot {\beta_{D,i}} \cdot {}^{D_i}/_{E_i}}{1 + (1-\tau) \cdot {}^{D_i}/_{E_i}}
+\ee
+
+with $\beta_{D,i}=0$ for all firms. Following relation converts $\beta_U$ to $\beta_L$:
+
+\be
+	\beta_L = \beta_U + (1-\tau) \cdot (\beta_U - \beta_D) \cdot {}^D/_E
+\ee
+
+It is now simple to determine the cost of equity, dept and $r_{WACC}$.
+
+\be
+\mathrm{Equity}=E(R_E) = R_F + \beta_L \cdot [E(R_M) - R_F)]$$	
+$$\mathrm{Dept}=\mathrm{After\ tax\ cost} = (R_F + \mathrm{def.\ spread}) \cdot (1-\tau)$$
+$$r_{WACC} = R_E \cdot \left(1 - \frac{\mathrm{Dept}}{\mathrm{Dept + Equity}}\right) + R_D \cdot \frac{\mathrm{Dept}}{\mathrm{Dept + Equity}}
+\ee
+
+Now we can determine the free cash flows. The $\mathrm{EBIT}_i$ for each year $i$ is calculated as follows
+
+\be
+	\mathrm{EBIT}_i= \mathrm{growth\ rate}_i \cdot \mathrm{EBIT}_{i-1}	
+\ee
+
+We took into account the tax of 35\% to determine the after tax $\mathrm{EBIT}_i$. The depreciation follows the same behavior than the $\mathrm{EBIT}_i$. Finally, we can compute the working capital as follows
+\be
+\mathrm{WC}_i = \mathrm{EBIT}_i \cdot 10\%
+\ee
+The free cash flow (FCF) is determined as follows
+
+\be
+\mathrm{FCF}_i = \mathrm{EBIT}(1-\tau)_i - \mathrm{CAPEX}_i + \mathrm{Depreciation}_i - \Delta \mathrm{WC}_i
+\ee
+
+with  
+
+\be
+\mathrm{CAPEX}_i = \mathrm{EBIT}(1-\tau)_i \cdot \mathrm{Reinvestment\ rate}_i + \mathrm{Depreciation}_i  - \Delta \mathrm{WC}_i
+\ee
+
+Finally, we can compute the present value of each year as follows, with $y$ the year number.
+
+\be
+\mathrm{PV}=\frac{\mathrm{FCF}}{(1+\mathrm{WACC})^{y}}
+\ee
+
+The terminal value at year 10 can be obtained with
+
+\be
+\mathrm{Terminal\ value} = \frac{\mathrm{FCF}_{11}}{{r_{WACC,10}} - g_{10}}
+\ee
+
+Once all data has been entered in the Excel file, we found a value of the firm of \textbf{\$50'174.8} with the fixed 10\% leverage ratio value. In order to find the value maximizing capital structure, we simply used the Solver add-in of Excel and found an optimal leverage ratio value of \textbf{24.99\%} leading to a firm value of \textbf{\$54'910.3}. 
+
+
+
+%======= TABLEAU ===========
+%\begin{center} %---------------Tab--------------
+%\begin{tabular} {| c | c | c | c | c | c |}
+%\hline
+ %& & & & & $\\ \hline
+%\end{tabular}
+%\end{center}
+
+
+%===========GRAPH================
+%\begin{figure} %---------------------Graph---------------------------
+%\begin{center}
+%\includegraphics[width=12cm]{graph/ampli2} 
+%\end{center}
+%\caption{\em  \label{label}
+%L�gende
+%}
+%\end{figure}
+
+
+%========SUBGRAPH=======
+%\begin{figure} [h] %----------- SubGraph ---------------------
+%\centerline{
+%\subfigure[ sublegend ] {\label{sfig:thetat} \includegraphics[width=7cm]{ graph/graph_convdt3 } }
+%\subfigure[ sublegend ] {\label{sfig:thetafin} \includegraphics[width=7cm]{ graph/graph_convtfin } } 
+%}
+%\caption{\label{ label } 
+%L�gende
+%} 
+%\end{figure}
+
+
+
+
+
+
+
+
+\end{document} %%%% THE END %%%%

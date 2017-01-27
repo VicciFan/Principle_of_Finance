@@ -1,0 +1,454 @@
+%
+% LATEXBONES
+%
+\documentclass[a4paper,11pt,twoside]{article}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage[english]{babel}
+\usepackage[applemac]{inputenc}
+\usepackage[colorlinks,bookmarks=false,linkcolor=blue,urlcolor=blue]{hyperref}
+\usepackage{subfigure}
+\usepackage{here}
+\usepackage{wrapfig}
+\usepackage{fancyhdr}
+\usepackage{dirtytalk}
+
+%drow graph
+\usepackage{fancybox}
+\usepackage{tikz}
+\usepackage{capt-of}
+
+% print code
+\usepackage{listings}
+\usepackage{algorithm2e}
+\usepackage{verbatim}
+
+% push at the bottom
+\newenvironment{bottompar}{\par\vspace*{\fill}}{\clearpage}
+
+% landscape
+\usepackage{pdflscape}
+
+\paperheight=297mm
+\paperwidth=210mm
+
+\setlength{\textheight}{235mm}
+\setlength{\topmargin}{-1.2cm} 
+
+\setlength{\parindent}{0pt}
+
+\setlength{\textwidth}{15cm}
+\setlength{\oddsidemargin}{0.56cm}
+\setlength{\evensidemargin}{0.56cm}
+
+% quotes
+\usepackage{framed}
+\newcommand*{\signed}[1]{%
+  \unskip\hspace*{1em plus 1fill}%
+  \nolinebreak[3]\hspace*{\fill}\mbox{#1}
+}
+
+\pagestyle{plain}
+
+% --- equations ---
+\def \be {\begin{equation}}
+\def \ee {\end{equation}}
+%\def \dd  {{\rm d}}m
+
+% --- links ---
+\newcommand{\mail}[1]{{\href{mailto:#1}{#1}}}
+\newcommand{\ftplink}[1]{{\href{ftp://#1}{#1}}}
+
+
+
+
+
+
+% ======= Document ======
+
+%----------------------------------------------------------------------------------------
+% HEADING SECTIONS
+%----------------------------------------------------------------------------------------
+
+% --- header ---
+\fancyhead[L]{Principles of Finance}
+\fancyhead[R]{Assignment 6}
+
+\let\endtitlepage\relax
+
+\begin{document}
+\begin{titlepage} %Titre
+\begin{center}
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for the horizontal lines, change thickness here
+\center % Center everything on the page
+ 
+ 
+ %----------------------------------------------------------------------------------------
+% TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+
+
+
+\begin{figure} [h] %----------- SubGraph ---------------------
+\centerline{
+\subfigure{\includegraphics[height = 2 cm]{./pic/EPFL.png}  }
+} 
+\end{figure}
+
+\HRule \\[0.4cm]
+{ \huge \bfseries MGT-482 Principles of Finance \\Assignment 6}\\[0.4cm] % Title of your document
+
+\begin{minipage}[t]{0.4\textwidth}
+\flushleft
+Prof. Erwan Morellec
+\end{minipage}
+~
+\begin{minipage}[t]{0.55\textwidth}
+\flushright
+Team: \\
+Joachim Muth - \mail{joachim.muth@epfl.ch}\\
+Andreas Bill - \mail{andreas.bill@epfl.ch}\\
+Nicolas Roth - \mail{nicolas.roth@epfl.ch}\\
+\end{minipage}
+\begin{center}
+\today
+\end{center}
+\HRule \\
+ %----------------------------------------------------------------------------------------
+
+\end{center}
+\end{titlepage}
+
+
+
+\pagestyle{fancy}
+
+% ================ Ex 1 ==============
+\section*{Exercice 1}
+
+\subsection*{Part a}
+
+In order to determine which investment has the highest internal rate return (IRR), we first determine the net present value (NVP) and set it to 0. We have
+
+\be
+\mathrm{NPV} = \mathrm{PV(gains)} - \mathrm{PV(costs)} = 
+\mathrm{PV(perpetuity)} - \mathrm{PV(initial\ investment)}
+\ee
+
+\be
+\mathrm{NPV_a}=0=\frac{\$2\mathrm{M}}{r} - \$10\mathrm{M} \Rightarrow \mathrm{IRR_a}=r_a=\frac{\$2\mathrm{M}}{\$10\mathrm{M}}=20\%
+\ee
+
+
+\be
+\mathrm{NPV_b}=0=\frac{\$1.5\mathrm{M}}{r-0.02} - \$10\mathrm{M} \Rightarrow \mathrm{IRR_b}=r_b=\frac{\$1.5\mathrm{M}}{\$10\mathrm{M}}+0.02=17\%
+\ee
+
+Investment A has the highest internal rate return.
+
+\subsection*{Part b}
+
+Inserting $r=0.07$ in  NVP's relation above, we get
+
+\be
+\mathrm{NPV_a}=\frac{\$2\mathrm{M}}{0.07} - \$10\mathrm{M}=\$18.57\mathrm{M}
+\ee
+
+\be
+\mathrm{NPV_b}=\frac{\$1.5\mathrm{M}}{0.07-0.02} - \$10\mathrm{M}=\$20\mathrm{M}
+\ee
+
+Investment B has the highest net present value.
+
+\subsection*{Part c}
+
+The NVP is a more valuable parameter than the IRR. I would choose investment B even though the IRR of investment A is higher. I'd receive \$20M today instead of \$18.57M. 
+
+
+
+%================ Ex 2 ==============
+\section*{Exercice 2}
+
+\subsection*{Part a}
+In order to determine the value of a company, we first need to calculate the value at the end of year 5 and beyond. We have
+
+\be
+\mathrm{V_5}=\frac{\mathrm{1+0.06}}{0.15 - 0.06} \cdot \$120 \mathrm{M} = \$ 1413.33\mathrm{M}
+\ee
+
+So the value of the company is
+\be
+\mathrm{V_0}=\sum\limits_{i=1}^5 \frac{FCF_i}{(1+r)^{i}} + \frac{V_5}{(1+r)^5} 
+\ee
+
+\be
+=\frac{75}{1.15} + \frac{84}{1.15^2} + \frac{96}{1.15^3} + \frac{111}{1.15^4} + \frac{120}{1.15^5} + \frac{1413.33}{1.15^5} = \$ 1017.66 \mathrm{\ millions}
+\ee
+
+
+\subsection*{Part b}
+
+Using the price per share formula defined in the course, we have
+
+\be
+P_0 = \frac{V_0 + \mathrm{Cash}_0 - \mathrm{Debt}_0}{ \mathrm{Shares\ Outstanding}_0} = \frac{1017.66 + 0 - 500}{14} = \$ 36.98
+\ee
+
+% ================ Ex 3 ==============
+\section*{Exercice 3}
+
+This exercise is divided in three main parts. First, we will determine the growth rate per year of the share, then we will compute the earnings per share and the dividends to finally end up with the final result, the value of the company. The growth rate of the share for each period is given as
+
+\be
+g_1=100\%\cdot 25\%=25\%
+\ee
+\be
+g_2=50\%\cdot 25\%=12.5\%
+\ee
+\be
+g_3=20\%\cdot 25\%=5\%
+\ee
+
+The EPS (earnings per share) is
+
+\be
+\mathrm{EPS_1} = \$ 3
+\ee
+\be
+\mathrm{EPS_2} = \mathrm{EPS_1} \cdot g_1 = 3 \cdot 1.25 = \$ 3.75
+\ee
+\be
+\mathrm{EPS_3} = \mathrm{EPS_2} \cdot g_2 = 3.75 \cdot 1.25 = \$ 4.69
+\ee
+\be
+\mathrm{EPS_4} = \mathrm{EPS_3} \cdot g_3 = 4.69 \cdot 1.125 = \$ 5.27
+\ee
+\be
+\mathrm{EPS_5} = \mathrm{EPS_4} \cdot g_4 = 5.27 \cdot 1.125 = \$ 5.93
+\ee
+\be
+\mathrm{EPS_6} = \mathrm{EPS_5} \cdot g_5 = 5.93 \cdot 1.05 = \$ 6.23
+\ee
+
+and the dividends,
+
+\be
+Div_1 = Div_2 = 0
+\ee
+\be
+Div_3 = \mathrm{EPS_3} \cdot (1 - \mathrm{retained\ earnings}_3) = 4.69 \cdot 50\ \% = \$ 2.34
+\ee
+\be
+Div_4 = \mathrm{EPS_4} \cdot (1 - \mathrm{retained\ earnings}_4) = 5.27 \cdot 50\ \% = \$ 2.64
+\ee
+\be
+Div_5 = \mathrm{EPS_5} \cdot (1 - \mathrm{retained\ earnings}_5) = 5.93 \cdot 80\ \% = \$ 4.75
+\ee
+\be
+Div_6 = \mathrm{EPS_6} \cdot (1 - \mathrm{retained\ earnings}_6) = 6.23 \cdot 80\ \% = \$ 4.98
+\ee
+
+We can now compute the stock price with the following relation
+
+\be
+\mathrm{P_0}=\sum\limits_{i=1}^5 \frac{Div_i}{(1+r)^{i}} + \frac{V_5}{(1+r)^5} 
+\ee
+
+with $V_5=\frac{Div_6}{r-g}=\$99.67$. Finally, the value of Halliford's stock is:
+
+\be
+P_0 = \frac{2.34}{1.1^3} + \frac{2.64}{1.1^4} + \frac{4.75}{1.1^5} + \frac{99.67}{1.1^5} = \$ 68.4
+\ee
+
+% ================ Ex 4 ==============
+\section*{Exercice 4}
+
+First, we need to determine the value of the company given by the formula:
+
+\be
+\mathrm{V_0}=\sum\limits_{i=1}^2 \frac{FCF_i}{(1+r)^{i}} + \frac{V_2}{(1+r)^2} 
+\ee
+
+with $V_2=\frac{1+g}{r-g} \cdot \mathrm{FCF_2}$, we get:
+
+\be
+\frac{45}{1.094} + \frac{50}{1.094^2} + \frac{\frac{1.05}{0.044} \cdot 50}{1.094^2} = \$ 1079.86 \mathrm{M}
+\ee
+
+Using the price per share relation, we finally get for ABC Technologies:
+
+\be
+P_0 = \frac{V_0 + \mathrm{Cash}_0 - \mathrm{Debt}_0}{ \mathrm{Shares\ Outstanding}_0} =\frac{1079.86 + 110 - 30}{50} = \$ 23.2
+\ee
+
+% ================ Ex 5 ==============
+\section*{Exercice 5}
+
+We can compute the NPV with
+
+\be
+\mathrm{NPV}=\mathrm{PV(gains)}-\mathrm{PV(costs)}=
+\ee
+\be
+= \mathrm{PV}(\mathrm{\$1M\ annuity}) - \mathrm{PV}(\mathrm{\$100K\ perpetuity}) - \mathrm{PV}(\mathrm{initial\ costs}) 
+\ee
+\be
+=\$1\mathrm{M} \cdot \frac{1}{0.06} \left( 1 - \frac{1}{(1 + 0.06)^{10}} \right) - \frac{\$100\mathrm{K}}{0.06} - \$5\mathrm{M} = \$ 693'420
+\ee
+
+With this nice positive NPV, Innovation company should definitely undertake the project. 
+
+
+% ================ Ex 6 ==============
+\section*{Exercice 6}
+
+\subsection*{Part a}
+The EBIT in this case is simple the net margin a company can make in a year with that machine. Here we have
+
+\be
+EBIT = Sales - Costs - Depriciation
+\ee
+For the three years:
+\be
+EBIT_1 = 2000\cdot (18-9) - 10000 = \$8000
+\ee
+\be
+EBIT_2 = 2000\cdot1.1\cdot (18-9)  - 10000 = \$9800
+\ee
+\be
+EBIT_3 = 2000\cdot1.1^2\cdot(18-9) - 10000 = \$11'780
+\ee
+
+\subsection*{Part b}
+
+The incremental unlevered net incomes are the EBIT's after the tax is being paid. We have for year 1 to three $EBIT_i(1-t)$ 
+\be
+= \$5200 \mathrm{\ (year 1)}
+\ee
+\be
+= \$6370 \mathrm{\ (year 2)}
+\ee
+\be
+= \$7657 \mathrm{\ (year 3)}
+\ee
+
+\subsection*{Part c}
+
+The depreciation tax shield is the taxes the company can avoid to pay if it deducts the depreciation value. We have for the first year $\$10'000\cdot 0.35=\$3500$.
+
+
+
+% ================ Ex 7 ==============
+\section*{Exercice 7}
+
+Let's approach this exercise by analyzing both scenarios. In each one, we need to go from earnings to cash flows in order to determine NPV to decide which plan is the best. 
+
+
+\subsection*{Chains purchased from supplier}
+
+For each year, we have to include the taxes to the EBIT to get the cash flows. Then, to determine the NPV, we sum up the cash flows of each year divided by the capital costs. We have
+
+\be
+\sum^{10}_{i = 0} \frac{EBIT_i(1-t)}{1.15^i}=-\sum^{10}_{i = 0} \frac{(\mathrm{costs+depreciation})_i(1-t)}{1.15^i}
+\ee
+\be
+=\mathrm{NPV}= -\sum^{10}_{i = 0} \frac{(30'000\cdot2+0)(1-0.35)}{1.15^i}=-\$1'957'319
+\ee
+
+\subsection*{In-house chain production}
+
+Now let's have a look at the in-house production scenario. It is simpler to show a table with the different steps as described in the course.
+
+\begin{tabular}{|l|c|c|c|c|c|c|}
+	\hline
+	& 0 & 1 & 2 & 3 & 4 & 5 \\
+	\hline
+	Costs & 0 & -450000 & -450000 & -450000 & -450000 & -450000 \\
+	\hline
+	Depreciation & 0 & -25000 & -25000 & -25000 & -25000 & -25000\\
+	\hline
+	EBIT & 0 & -475000 & -475000 & -475000 & -475000 & -475000 \\
+	\hline
+	EBIT(1-t) & 0 & -308750 & -308750 & -308750 & -308750 & -308750 \\
+	\hline
+	Change in WC & 50000 & 0 & 0 & 0 & 0 & 0 \\
+	\hline
+	Depreciation & 0 & 25000 & 25000 & 25000 & 25000 & 25000 \\
+	\hline
+	CAPEX & -250000 & 0 & 0 & 0 & 0 & 0\\
+	\hline
+	FCF & -300000 & -283750 & -283750 & -283750 & -283750 & -283750 \\
+	\hline
+	PV @ 15\% & -300000 & -246739.13 & -214555.76 & -186570.23 & -162234.98 & -141073.90\\
+	\hline
+\end{tabular}
+
+\begin{center}
+\begin{tabular}{|l|c|c|c|c|c|}
+	\hline
+	& 6 & 7 & 8 & 9 & 10 \\
+	\hline
+	Costs & -450000 & -450000 & -450000 & -450000 & -450000 \\
+	\hline
+	Depreciation & -25000 & -25000 & -25000 & -25000 & -25000 \\
+	\hline
+	EBIT & -475000 & -475000 & -475000 & -475000 & -475000 \\
+	\hline
+	EBIT(1-t) & -308750 & -308750 & -308750 & -308750 & -308750 \\
+	\hline
+	Change in WC & 0 & 0 & 0 & 0 & -50000 \\
+	\hline
+	Depreciation & 25000 & 25000 & 25000 & 25000 & 25000 \\
+	\hline
+	CAPEX & 0 & 0 & 0 & 0 & 13000 \\
+	\hline
+	FCF & -283750 & -283750 & -283750 & -283750 & -220750 \\
+	\hline
+	PV @ 15\% & -122672.95 & -106672.13 & -92758.38 & -80659.46 & -54566.02 \\
+	\hline
+\end{tabular}
+\end{center}
+
+The few tricky numbers are the change in WC, where one should not forget that at year 10, the 50'000 need to be gone again. Also, the cost of investment (CAPEX) can be set to 0 from year 1 on for tax purposes. Then, at year 10, as it is sold for \$20'000, we include it again (with the \%35 taxe rate deduction). Summing up all PV's, we get as NPV this time a value of -\$1'708'503. This leads to the conclusion to produce in-house as a smallest PV (in absolute value) is linked to a smallest production cost.
+
+
+%======= TABLEAU ===========
+%\begin{center} %---------------Tab--------------
+%\begin{tabular} {| c | c | c | c | c | c |}
+%\hline
+ %& & & & & $\\ \hline
+%\end{tabular}
+%\end{center}
+
+
+%===========GRAPH================
+%\begin{figure} %---------------------Graph---------------------------
+%\begin{center}
+%\includegraphics[width=12cm]{graph/ampli2} 
+%\end{center}
+%\caption{\em  \label{label}
+%L�gende
+%}
+%\end{figure}
+
+
+%========SUBGRAPH=======
+%\begin{figure} [h] %----------- SubGraph ---------------------
+%\centerline{
+%\subfigure[ sublegend ] {\label{sfig:thetat} \includegraphics[width=7cm]{ graph/graph_convdt3 } }
+%\subfigure[ sublegend ] {\label{sfig:thetafin} \includegraphics[width=7cm]{ graph/graph_convtfin } } 
+%}
+%\caption{\label{ label } 
+%L�gende
+%} 
+%\end{figure}
+
+
+
+
+
+
+
+
+\end{document} %%%% THE END %%%%

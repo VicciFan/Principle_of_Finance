@@ -1,0 +1,422 @@
+%
+% LATEXBONES
+%
+\documentclass[a4paper,11pt,twoside]{article}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage[english]{babel}
+\usepackage[applemac]{inputenc}
+\usepackage[colorlinks,bookmarks=false,linkcolor=blue,urlcolor=blue]{hyperref}
+\usepackage{subfigure}
+\usepackage{here}
+\usepackage{wrapfig}
+\usepackage{fancyhdr}
+%\usepackage{dirtytalk}
+
+%drow graph
+\usepackage{fancybox}
+\usepackage{tikz}
+\usepackage{capt-of}
+
+% print code
+\usepackage{listings}
+\usepackage{algorithm2e}
+\usepackage{verbatim}
+
+% push at the bottom
+\newenvironment{bottompar}{\par\vspace*{\fill}}{\clearpage}
+
+% landscape
+\usepackage{pdflscape}
+
+\paperheight=297mm
+\paperwidth=210mm
+
+\setlength{\textheight}{235mm}
+\setlength{\topmargin}{-1.2cm} 
+
+\setlength{\parindent}{0pt}
+
+\setlength{\textwidth}{15cm}
+\setlength{\oddsidemargin}{0.56cm}
+\setlength{\evensidemargin}{0.56cm}
+
+% quotes
+\usepackage{framed}
+\newcommand*{\signed}[1]{%
+  \unskip\hspace*{1em plus 1fill}%
+  \nolinebreak[3]\hspace*{\fill}\mbox{#1}
+}
+
+\pagestyle{plain}
+
+% multiline equation -- call it with \begin{multline}
+\usepackage{amsmath}
+
+
+% --- equations ---
+\def \be {\begin{equation}}
+\def \ee {\end{equation}}
+%\def \dd  {{\rm d}}m
+
+% --- links ---
+\newcommand{\mail}[1]{{\href{mailto:#1}{#1}}}
+\newcommand{\ftplink}[1]{{\href{ftp://#1}{#1}}}
+
+
+
+
+
+
+
+% ======= Document ======
+
+%----------------------------------------------------------------------------------------
+% HEADING SECTIONS
+%----------------------------------------------------------------------------------------
+
+% --- header ---
+\fancyhead[L]{Discounting and validation}
+\fancyhead[R]{}
+
+% no newpage after title
+\let\endtitlepage\relax
+
+% no enumeration of sections
+\setcounter{secnumdepth}{0}
+
+\begin{document}
+\begin{titlepage} %Titre
+\begin{center}
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for the horizontal lines, change thickness here
+\center % Center everything on the page
+ 
+ 
+ %----------------------------------------------------------------------------------------
+% TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+
+
+
+\begin{figure} [h] %----------- SubGraph ---------------------
+\centerline{
+\subfigure{\includegraphics[height = 2 cm]{./pic/EPFL.png}  }
+} 
+\end{figure}
+
+\HRule \\[0.4cm]
+{ \huge \bfseries MGT-482 Principles of Finance \\Assignment 2}\\[0.4cm] % Title of your document
+
+\begin{minipage}[t]{0.4\textwidth}
+\flushleft
+Prof. Erwan Morellec
+\end{minipage}
+~
+\begin{minipage}[t]{0.55\textwidth}
+\flushright
+Team: \\
+Joachim Muth - \mail{joachim.muth@epfl.ch}\\
+Andreas Bill - \mail{andreas.bill@epfl.ch}\\
+Nicolas Roth - \mail{nicolas.roth@epfl.ch}\\
+\end{minipage}
+\begin{center}
+\today
+\end{center}
+\HRule \\
+ %----------------------------------------------------------------------------------------
+
+\end{center}
+\end{titlepage}
+
+
+
+\pagestyle{fancy}
+% ================ Introduction ==============
+% ================ Ex 1 ==============
+\section{Exercice 1}
+
+In order to decide which option is the best one, we need to convert the annual percentage rates to effective annual rates EAR. This is done using equation \ref{eq1.1} where $k$ is the number of compounding periods.
+
+\begin{equation}
+\label{eq1.1}
+EAR = (1+\frac{APR}{k})^k -1
+\end{equation}
+
+The following table shows the resulting EAR's:
+
+\begin{center} 
+\begin{tabular} { c  c  c  c  }
+\textbf{Alternative} & \textbf{APR} & \textbf{k} &\textbf{EAR} \\
+\hline\\[-7pt]
+A & 6.25\% & 1 & 6.25\% \\
+\hline\\[-7pt]
+B & 6.10\% & 365 &  6.289\%\\
+\hline\\[-7pt]
+C & 6.125\% & 4 & 6.267\%\\
+\hline\\[-7pt]
+D & 6.120\% & 12 & 6.295\%\\
+\end{tabular}
+\end{center}
+
+From the computed EAR's in this table we can see that alternative D is the best option.
+
+
+% ================ Ex 2 ==============
+\section{Exercice 2}
+
+\subsection{Solution for 2.a}
+
+The formula which applies for a standard annuity with payments of C from date 1 to date N is the following:
+
+\begin{equation}
+\label{eq2.1}
+PV = C*\frac{1}{r}*(1-\frac{1}{(1+r)^N})
+\end{equation}
+
+C is the monthly payment, r the discount rate per period and therefore $r = \frac{APR}{12}$, and N is the number of periods, in this case 60. So the original loan taken on the truck was:
+
+\begin{equation}
+\text{Loan} = 617.16\$*\frac{1}{\frac{0.059}{12}}*(1-\frac{1}{(1+\frac{0.059}{12})^{60}}) = 31'999.86\$
+\end{equation}
+
+\subsection{Solution for 2.b}
+
+The outstanding principal balance on the loan can be determined by discounting the remaining future payments as of today (just after the 24th monthly payment). This is done in the exact same way as in subproblem a, only that this time the number of periods remaining is 60-24 = 36. We get:
+
+\begin{equation}
+\text{Outstanding principle} = 617.16\$*\frac{1}{\frac{0.059}{12}}*(1-\frac{1}{(1+\frac{0.059}{12})^{36}}) = 20'316.92\$
+\end{equation}
+
+% ================ Ex 3 ==============
+\section{Exercice 3}
+
+We need to compute the present value of the investment for both options in order to choose the best one. For option a, this is trivial as we do not need to compound or discount anything. The present value of the investment for option a is just 20'000 \$ - 2'000 \$ = 18'000 \$. \\
+For option 2 we first need to discount the 30 annuity payments of 500 \$ at 15\% APR with monthly compounding. Using equation \ref{eq2.1} we get:
+
+\begin{equation}
+\text{PV} = 500\$*\frac{1}{\frac{0.15}{12}}*(1-\frac{1}{(1+\frac{0.15}{12})^{30}}) = 12'444.45\$
+\end{equation}
+
+The total present value of the investment of option b is therefore 5'000 \$ + 12'445.45 \$ = 17'445.45 \$. This is less than what was found for option a. As we suppose to be in debt for the next 30 months and then pay all the debts, including interest at once, it is possible to just compare these present values in order to find the better payment option, which is evidently option b.
+
+% ================ Ex 4 ==============
+\section{Exercice 4}
+
+\subsection{Solution for 4.a}
+
+Coupon payments are computed using the following equation:
+
+\begin{equation}
+\label{eq4.1}
+CPN = \frac{\text{Coupon Rate} * \text{Face Value}}{\text{Number of Coupon Payments per Year}} 
+\end{equation}
+
+Setting the Face Value to 1000\$, the Coupon Rate to 8\% and the number of payments per year to 2, we get:
+
+\begin{equation}
+CPN = \frac{0.08*1000\$}{2} = 40\$
+\end{equation}
+
+\subsection{Solution for 4.b}
+
+The yield to maturity (YTM) of a coupon bond is computed using equation \ref{eq4.2}. 
+
+\begin{equation}
+\label{eq4.2}
+P = CPN*\frac{1}{y}*(1-\frac{1}{(1+y)^N})+\frac{FV}{(1+y)^N}
+\end{equation}
+
+We need to solve this equation for $y$ with: $P = 1'034.74\$ $, $N = 20$ , $FV = 1000\$ $ and $CPN = 40\$ $. Solving this gives $y = 3.75\%$, which is the yield for every semester. Therefore expressed as an APR with semi-annual compounding we get 7.5\% as the yield to maturity of this bond.
+
+\subsection{Solution for 4.c}
+
+Knowing that the YTM has changed to 9\% APR, we can use equation \ref{eq4.2} directly to compute the price of the bond. Because of the semi-annual coupon payments we set the variable y to 4.5\% and solve for P:
+
+\begin{equation}
+P = 40\$*\frac{1}{0.045}*(1-\frac{1}{(1+0.045)^{20}})+\frac{1000\$}{(1+0.045)^{20}} = 934.96\$
+\end{equation}
+
+We can see that the price of the bond is below its Face Value, therefore it trades at discount.
+
+% ================ Ex 5 ==============
+\section{Exercice 5}
+
+As stated in the course, using the Law of One Price and the yields of default-free zero-coupon bonds, one can determine the price and yield of any other default-free bond. Using the yields for default-free zero-coupon bonds given in the exercice, we can determine the price of the original bond as shown in the following table. 
+
+\begin{center}
+\begin{tabular} { c  c  c }
+\textbf{Zero Coupon Bond} & \textbf{Face Value required} & \textbf{Cost} \\
+ \hline \\[-7pt]
+1 year & C & $\frac{C}{(1.04)}$ \\[5pt]
+\hline \\[-7pt]
+2 years & C & $\frac{C}{(1.043)^2}$ \\[5pt]
+\hline \\[-7pt]
+3 years & C & $\frac{C}{(1.045)^3}$ \\[5pt]
+\hline \\[-7pt]
+4 years & C + FV & $\frac{C+FV}{(1.04)^4}$ \\[5pt]
+\hline
+\hline \\[-7pt]
+\multicolumn{2}{r}{\textbf{Total Cost:}} & $ \frac{C}{(1.04)} + \frac{C}{(1.043)^2} + \frac{C}{(1.045)^3} + \frac{FV+C}{(1.047)^4} $ \\
+\end{tabular}
+\end{center}
+
+As the bond is issued at par, we know that the price of the bond is equal to its face value. Therefore we can compute the annual coupon payments according to equation \ref{eq5.1}. 
+
+\begin{equation}
+\label{eq5.1}
+C = \frac{FV - \frac{FV}{(1.047)^4}}{\frac{1}{(1.04)} + \frac{1}{(1.043)^2} + \frac{1}{(1.045)^3} + \frac{1}{(1.047)^4}}
+\end{equation}
+
+Equation \ref{eq5.1} resolves to C = 46.758 \$. The coupon rate of this bond is therefore 4.676\%.
+
+% ================ Ex 6 ==============
+\section{Exercice 6}
+
+\subsection{Solution for 6.a}
+
+The theoretical market price is equal to the present value of the bond. Also, by the Law of One Price, the 2-year bond with semi-annual coupon payments can be represented by the given zero-coupon bonds from the exercice. In order to compute the PV, we need to know the cashflows of the 2-year bond, as well as the effective semestrial rates (ESR) for the zero-coupon bonds. The coupon payments of the 2-year bond cand be computed using equation \ref{eq4.1} which gives in this case:
+
+\begin{equation}
+\label{eq6.1}
+CPN = \frac{0.06*100\$}{2} = 3\$
+\end{equation}
+
+The cashflows are therefore:
+
+\begin{center} 
+\begin{tabular} { c  c  c  c  c }
+\textbf{Time} & 0.5 & 1 & 1.5 & 2 \\
+\hline \\[-7pt]
+\textbf{Cashflow} & 3\$ & 3\$ & 3\$ & 103\$ \\
+\end{tabular}
+\end{center}
+
+Now we need to compute the ESR of the zero-coupon bonds in order to find the PV of this bond. We are given the annual percentage rates (ARP's) measured with continuous coumpounding, these rates are named $c$ in the following equation. The ESR can be found using equation \ref{eq6.2}. As the zero-coupon bonds are semestrial, we need to divide the ARP's by a factor of 2 as applied in the equation. 
+
+\begin{equation}
+\label{eq6.2}
+ESR = e^{\frac{c}{2}}-1
+\end{equation}
+
+We find the following effective semestrial rates:
+
+\begin{center} 
+\begin{tabular} { c  c  c  c  c }
+\textbf{Zero-coupon bonds} & 6-month & 12-month & 18-month & 24-month \\
+\hline\\[-7pt]
+\textbf{ESR} & 2.020\% & 2.685\% & 2.994\% & 3.303\%\\
+\hline
+\end{tabular}
+\end{center}
+
+Now we can compute the PV as follows:
+
+\begin{equation}
+PV = \frac{3\$}{(1+0.0202)} + \frac{3\$}{(1+0.02685)^2} + \frac{3\$}{(1+0.02994)^3} + \frac{103\$}{(1+0.03303)^4} = 98.98\$
+\end{equation}
+
+So the theoretical market price of this bond is 98.98\$.
+
+\subsection{Solution to 6.b}
+
+Using the previously determined cashflows and the theoretical market price of the bond. We can put the problem in the form of equation \ref{eq6.3} which we need to solve for Y. The exponential is negative as we are discounting the future cashflows to PV. 
+ \begin{equation}
+\label{eq6.3}
+P = C_1*e^{-0.5*Y} + C_2*e^{-Y} + C_3*e^{-1.5*Y} + (C_4 + FV)*e^{-2*Y}
+\end{equation}
+Setting $C_1$, $C_2$, $C_3$ and $C_4$ = 3\$, FV = 100\$ and P = 98.98\$, we find Y to be 6.447\% APR with continuous compounding. 
+
+% ================ Ex 7 ==============
+\section{Exercice 7}
+
+Foreward rates can be determined using equation \ref{eq7.1}.
+
+\begin{equation}
+\label{eq7.1}
+(1+r_T)^T = (1+r_t)^t*(1+f_{t,T})^{(T-t)}
+\end{equation}
+
+
+\subsection{Solution for 7.a}
+
+Applying equation \ref{eq7.1} and setting $t = 1$, $T=2$, $r_t = 4\%$ and $r_T = 5.5\%$ we get:
+
+\begin{equation}
+(1+0.055)^2 = (1+0.04)^1*(1+r_{t,T})^{(2-1)}
+\end{equation}
+
+which solves to:
+
+\begin{equation}
+r_{t,T} = \frac{(1+0.055)^2}{(1+0.04)^1}-1 = 7.02\%
+\end{equation}
+
+\subsection{Solution for 7.b}
+
+This time we set $t = 4$, $T = 5$, $r_t = 5\%$ and $r_T = 4.5\%$ and can put equation \ref{eq7.1} as follows:
+
+ \begin{equation}
+(1+0.045)^5 = (1+0.05)^4*(1+r_{t,T})^{(5-4)}
+\end{equation}
+
+which solves to:
+
+\begin{equation}
+r_{t,T} = \frac{(1+0.045)^5}{(1+0.05)^4}-1 = 2.52\%
+\end{equation}
+
+\subsection{Solution fo 7.c}
+
+Now we have to set $t=1$, $T=5$, $r_t = 4\%$ and $r_T = 4.5\%$. The equation now states:
+
+ \begin{equation}
+(1+0.045)^5 = (1+0.04)^1*(1+r_{t,T})^{(5-1)}
+\end{equation}
+
+and solves to:
+
+\begin{equation}
+r_{t,T} = \sqrt[4]{\frac{(1+0.045)^5}{(1+0.04)^1}}-1 = 4.625\%
+\end{equation}
+
+
+%======= TABLEAU ===========
+%\begin{center} %---------------Tab--------------
+%\begin{tabular} {| c | c | c | c | c | c |}
+%\hline
+ %& & & & & $\\ \hline
+%\end{tabular}
+%\end{center}
+
+
+%===========GRAPH================
+%\begin{figure} %---------------------Graph---------------------------
+%\begin{center}
+%\includegraphics[width=12cm]{graph/ampli2} 
+%\end{center}
+%\caption{\em  \label{label}
+%L�gende
+%}
+%\end{figure}
+
+
+%========SUBGRAPH=======
+%\begin{figure} [h] %----------- SubGraph ---------------------
+%\centerline{
+%\subfigure[ sublegend ] {\label{sfig:thetat} \includegraphics[width=7cm]{ graph/graph_convdt3 } }
+%\subfigure[ sublegend ] {\label{sfig:thetafin} \includegraphics[width=7cm]{ graph/graph_convtfin } } 
+%}
+%\caption{\label{ label } 
+%L�gende
+%} 
+%\end{figure}
+
+
+
+
+
+
+
+
+\end{document} %%%% THE END %%%%
